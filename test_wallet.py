@@ -1,5 +1,6 @@
 import pytest
-from wallet import Wallet
+from wallet import Wallet 
+from exception import InsufficientAmount
 
 def test_default_initial_amount():
   wallet = Wallet()
@@ -18,3 +19,8 @@ def test_spend_cash():
   wallet = Wallet(100)
   wallet.spend_cash(10)
   assert wallet.balance == 90
+
+def test_spend_cash_raises_exception_on_insufficient_amount():
+  wallet = Wallet(50)
+  with pytest.raises(InsufficientAmount):
+    wallet.spend_cash(100)
