@@ -4,11 +4,24 @@ from exception import InsufficientAmount
 
 @pytest.fixture
 def empty_wallet():
+  '''Returns a Wallet instance with a zero balance'''
   return Wallet()
 
 @pytest.fixture
 def wallet():
+  '''Returns a Wallet instance with a balance of 20'''
   return Wallet(90)
+
+@pytest.mark.parametrize('earned, spent, expected', [
+  (30, 20, 10),
+  (50, 30, 20),
+])
+
+def test_transactions(earned, spent, expected):
+  my_wallet = Wallet()
+  my_wallet.add_cash(earned)
+  my_wallet.spend_cash(spent)
+  assert my_wallet.balance == expected
 
 def test_default_initial_amount(empty_wallet):
   assert empty_wallet.balance == 0
