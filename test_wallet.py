@@ -17,11 +17,10 @@ def wallet():
   (50, 30, 20),
 ])
 
-def test_transactions(earned, spent, expected):
-  my_wallet = Wallet()
-  my_wallet.add_cash(earned)
-  my_wallet.spend_cash(spent)
-  assert my_wallet.balance == expected
+def test_transactions(empty_wallet, earned, spent, expected):
+  empty_wallet.add_cash(earned)
+  empty_wallet.spend_cash(spent)
+  assert empty_wallet.balance == expected
 
 def test_default_initial_amount(empty_wallet):
   assert empty_wallet.balance == 0
