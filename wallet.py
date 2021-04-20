@@ -4,3 +4,6 @@ class Wallet():
 
   def add_cash(self, amount):
     self.balance += amount
+  
+  def spend_cash(self, amount):
+    self.balance -= amount
